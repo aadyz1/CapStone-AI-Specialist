@@ -1,0 +1,20 @@
+We are hiring a Python Backend Engineer.
+
+Must-have:
+- Python 3
+- REST APIs (FastAPI or Flask)
+- SQL (PostgreSQL)
+- Docker
+- Unit testing
+
+Nice-to-have:
+- AWS
+- Kubernetes
+- Redis
+- CI/CD
+
+Responsibilities:
+- Build scalable APIs
+- Optimize database queries
+- Write tests and maintain code quality
+- Deploy services in containers

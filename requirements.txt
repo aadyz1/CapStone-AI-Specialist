@@ -1,0 +1,17 @@
+langchain>=0.2.14
+langchain-community>=0.2.12
+langchain-openai>=0.1.22
+langgraph>=0.2.35
+chromadb>=0.5.5
+python-dotenv>=1.0.1
+pydantic>=2.8.2
+tiktoken>=0.7.0
+streamlit
+langchain
+langchain-community
+langchain-openai
+langchain-chroma
+chromadb
+pydantic
+python-docx>=1.1.2
+pypdf>=4.2.0
