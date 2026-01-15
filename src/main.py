@@ -1,5 +1,8 @@
+import truststore 
+truststore.inject_into_ssl()
 import os
 import json
+
 
 from src.ingest import ingest_all
 from src.graph import build_recruitment_graph
@@ -95,9 +98,9 @@ def main():
 
     print("\n=== Learning Plan ===")
     print("Focus Areas:", ", ".join(plan.focus_areas))
-    ### for week, tasks in plan.plan_by_week.items():
+    ##for week, tasks in plan.plan_by_week.items():
     for index, tasks in enumerate(plan.plan_by_week, start=1):
-        week = f"Week{index}"
+        week = f"Week {index}"
         print(f"\n{week}:")
         for t in tasks:
             print(f"- {t}")

@@ -1,5 +1,8 @@
+import truststore 
+truststore.inject_into_ssl()
 from typing import TypedDict, List, Dict, Optional
 from langgraph.graph import StateGraph, END
+
 
 from src.schemas import ScreeningOutput, QuestionsOutput, AnswerEvaluationOutput, LearningPlan
 from src.agents import (

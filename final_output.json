@@ -5,50 +5,55 @@
         "candidate_id": "candidate_3",
         "match_score": 95,
         "strengths": [
-          "4 years of experience in Python",
-          "Proficient in FastAPI and async programming",
-          "Experience with PostgreSQL and Redis",
-          "Familiar with CI/CD practices using GitHub Actions",
-          "Skilled in Docker and Kubernetes deployments",
-          "Strong unit testing culture with pytest"
+          "Proficient in Python 3",
+          "Experience with FastAPI",
+          "Strong SQL skills with PostgreSQL",
+          "Experience with Docker",
+          "Strong unit testing skills",
+          "Experience with AWS",
+          "Experience with Kubernetes",
+          "Experience with Redis",
+          "Experience with CI/CD"
         ],
         "gaps": [],
-        "summary": "Candidate 3 has extensive experience in Python and is proficient in building REST APIs using FastAPI. They have a solid background in SQL with PostgreSQL and are familiar with caching using Redis. Their experience with Docker and Kubernetes, along with a strong unit testing culture, aligns well with the job requirements. Additionally, they have experience with AWS, which is a nice-to-have for the position."
+        "summary": "Candidate 3 is an excellent match for the Python Backend Engineer position. They possess all the must-have skills, including Python 3, FastAPI, PostgreSQL, Docker, and unit testing. Additionally, they have experience with all the nice-to-have skills such as AWS, Kubernetes, Redis, and CI/CD, making them a highly suitable candidate for the role."
       },
       {
         "candidate_id": "candidate_1",
-        "match_score": 85,
+        "match_score": 90,
         "strengths": [
-          "3 years of Python development",
-          "Experience with Flask for REST APIs",
-          "Proficient in PostgreSQL and SQL tuning",
-          "Experience with Docker for microservices",
-          "Basic knowledge of AWS (EC2, S3)",
-          "Experience with unit testing using pytest"
+          "3 years Python development",
+          "Built REST APIs in Flask",
+          "PostgreSQL, SQL tuning",
+          "Dockerized microservices",
+          "Unit tests using pytest",
+          "Basic AWS (EC2, S3)"
         ],
         "gaps": [
           "No experience with FastAPI",
-          "No experience with Kubernetes",
-          "No experience with Redis",
-          "No experience with CI/CD"
+          "No mention of Kubernetes",
+          "No mention of Redis",
+          "No mention of CI/CD"
         ],
-        "summary": "Candidate has strong experience in Python development and has built REST APIs using Flask. They are proficient in SQL with PostgreSQL and have experience with Docker. They also have basic knowledge of AWS and have implemented unit tests, making them a strong fit for the role, though they lack experience in some nice-to-have areas."
+        "summary": "Candidate 1 is a strong match for the Python Backend Engineer role, meeting all must-have requirements with experience in Python, Flask, PostgreSQL, Docker, and unit testing. They also have basic AWS experience, which is a nice-to-have. However, they lack experience with FastAPI, Kubernetes, Redis, and CI/CD, which are additional nice-to-have skills."
       },
       {
         "candidate_id": "candidate_2",
         "match_score": 30,
         "strengths": [
-          "Basic knowledge of Docker",
-          "Some experience with Python scripting"
+          "Docker basics"
         ],
         "gaps": [
-          "No experience with Python 3",
-          "No experience with REST APIs (FastAPI or Flask)",
-          "No experience with SQL (PostgreSQL)",
-          "Limited testing exposure",
-          "No experience with AWS, Kubernetes, Redis, or CI/CD"
+          "Python 3",
+          "REST APIs (FastAPI or Flask)",
+          "SQL (PostgreSQL)",
+          "Unit testing",
+          "AWS",
+          "Kubernetes",
+          "Redis",
+          "CI/CD"
         ],
-        "summary": "Candidate has some foundational skills in Python and Docker but lacks the necessary experience and skills in key areas required for the Python Backend Engineer role."
+        "summary": "Candidate 2 has basic Docker knowledge, which aligns with the job requirement for deploying services in containers. However, the candidate lacks experience in Python 3, REST APIs, and PostgreSQL, which are critical for the role. Additionally, there is limited exposure to unit testing and no experience with the nice-to-have skills such as AWS, Kubernetes, Redis, and CI/CD. Overall, the candidate's experience does not align well with the core requirements of the Python Backend Engineer position."
       }
     ]
   },
@@ -56,131 +61,158 @@
     "candidate_id": "candidate_3",
     "questions": [
       {
-        "question": "Can you explain the differences between FastAPI and Flask? When would you choose one over the other?",
-        "skill_tested": "Understanding of REST APIs and frameworks",
+        "question": "Can you explain how you would design a REST API using FastAPI?",
+        "skill_tested": "REST APIs (FastAPI)",
         "expected_answer_outline": [
-          "FastAPI is asynchronous and built on Starlette, while Flask is synchronous and more lightweight.",
-          "FastAPI has automatic generation of OpenAPI documentation, while Flask requires extensions for this.",
-          "FastAPI is generally faster due to its async capabilities, while Flask is simpler for small applications.",
-          "Choose FastAPI for performance and modern features, Flask for simplicity and smaller projects."
+          "Explanation of FastAPI's features such as automatic generation of OpenAPI documentation and async support.",
+          "Description of how to define endpoints using FastAPI decorators.",
+          "Discussion on how to handle request validation and serialization using Pydantic models.",
+          "Consideration of error handling and response status codes.",
+          "Mention of how to test the API endpoints."
         ]
       },
       {
-        "question": "How do you optimize SQL queries in PostgreSQL? Can you provide an example?",
-        "skill_tested": "SQL optimization skills",
+        "question": "How do you optimize SQL queries in PostgreSQL?",
+        "skill_tested": "SQL (PostgreSQL)",
         "expected_answer_outline": [
-          "Use EXPLAIN to analyze query performance.",
-          "Identify and create indexes on frequently queried columns.",
-          "Avoid SELECT * and only select necessary columns.",
-          "Use JOINs efficiently and consider using CTEs for complex queries."
+          "Explanation of using EXPLAIN ANALYZE to understand query performance.",
+          "Discussion on indexing strategies to speed up queries.",
+          "Consideration of query refactoring to reduce complexity.",
+          "Mention of using caching mechanisms if applicable.",
+          "Understanding of database normalization and denormalization trade-offs."
         ]
       },
       {
-        "question": "Describe your experience with Docker. How do you use it in your development workflow?",
-        "skill_tested": "Containerization and Docker usage",
+        "question": "Describe your experience with Docker and how you use it in your development workflow.",
+        "skill_tested": "Docker",
         "expected_answer_outline": [
-          "Experience in creating Dockerfiles and building images.",
-          "Using Docker Compose for multi-container applications.",
-          "Running containers for development to ensure consistency across environments.",
-          "Deploying applications in containers to production."
+          "Explanation of creating Dockerfiles to containerize applications.",
+          "Discussion on using Docker Compose for multi-container applications.",
+          "Experience with managing Docker images and containers.",
+          "Understanding of Docker networking and volumes.",
+          "Mention of best practices for writing efficient Dockerfiles."
         ]
       },
       {
-        "question": "What strategies do you use for writing unit tests in Python? Can you give an example of a test you wrote?",
-        "skill_tested": "Unit testing skills",
+        "question": "How do you ensure code quality and reliability through unit testing in Python?",
+        "skill_tested": "Unit testing",
         "expected_answer_outline": [
-          "Use unittest or pytest frameworks for writing tests.",
-          "Focus on testing individual functions or methods in isolation.",
-          "Example: Writing a test for a function that calculates the sum of two numbers."
+          "Explanation of using testing frameworks like unittest or pytest.",
+          "Discussion on writing test cases for different scenarios and edge cases.",
+          "Understanding of test-driven development (TDD) principles.",
+          "Mention of using mocking and patching to isolate tests.",
+          "Consideration of code coverage tools to ensure comprehensive testing."
         ]
       },
       {
-        "question": "Can you explain how you would implement CI/CD for a Python application? What tools would you use?",
-        "skill_tested": "Understanding of CI/CD processes",
+        "question": "What is your approach to deploying services in containers?",
+        "skill_tested": "Deployment in containers",
         "expected_answer_outline": [
-          "Use tools like GitHub Actions, Jenkins, or CircleCI for automation.",
-          "Set up pipelines for testing, building, and deploying applications.",
-          "Integrate with Docker for containerized deployments."
+          "Explanation of building and pushing Docker images to a registry.",
+          "Discussion on using orchestration tools like Kubernetes for deployment.",
+          "Understanding of setting up CI/CD pipelines for automated deployments.",
+          "Consideration of environment configuration and secrets management.",
+          "Mention of monitoring and logging strategies for deployed services."
         ]
       },
       {
-        "question": "What are some common challenges you face when building scalable APIs, and how do you address them?",
-        "skill_tested": "API design and scalability considerations",
+        "question": "Have you worked with AWS services before? If so, which services have you used and how?",
+        "skill_tested": "AWS",
         "expected_answer_outline": [
-          "Handling increased load by implementing caching strategies (e.g., Redis).",
-          "Using pagination for large datasets to improve response times.",
-          "Monitoring and logging to identify bottlenecks and optimize performance."
+          "Mention of specific AWS services like EC2, S3, RDS, Lambda, etc.",
+          "Explanation of how these services were used in past projects.",
+          "Discussion on setting up and managing AWS infrastructure.",
+          "Understanding of AWS IAM for managing permissions and security.",
+          "Consideration of cost management and optimization strategies on AWS."
         ]
       }
     ]
   },
   "evaluation": {
     "candidate_id": "candidate_3",
-    "overall_score": 20,
+    "overall_score": 5,
     "detailed": [
       {
-        "question": "Can you explain the differences between FastAPI and Flask? When would you choose one over the other?",
-        "answer": "ddd",
-        "score": 1,
-        "feedback": "The answer does not address the question or provide relevant information about FastAPI and Flask. It lacks any comparison or reasoning for choosing one over the other.",
+        "question": "Can you explain how you would design a REST API using FastAPI?",
+        "answer": "dfddf",
+        "score": 0,
+        "feedback": "The answer provided is not relevant to the question. It does not demonstrate any understanding of FastAPI or REST API design.",
         "missing_points": [
-          "Detailed comparison of FastAPI and Flask",
-          "Explanation of use cases for each framework"
+          "Understanding of FastAPI framework and its features",
+          "Explanation of creating endpoints and handling requests",
+          "Use of Pydantic for data validation",
+          "Incorporation of asynchronous programming for performance",
+          "Security measures like authentication and authorization",
+          "Documentation generation using FastAPI's built-in tools"
         ]
       },
       {
-        "question": "How do you optimize SQL queries in PostgreSQL? Can you provide an example?",
-        "answer": "dddd",
-        "score": 1,
-        "feedback": "The answer fails to provide any relevant information on SQL optimization techniques or examples. It does not demonstrate understanding of PostgreSQL query optimization.",
-        "missing_points": [
-          "Explanation of using EXPLAIN",
-          "Discussion on indexing",
-          "Example of optimized SQL query"
-        ]
-      },
-      {
-        "question": "Describe your experience with Docker. How do you create and manage Docker containers for a Python application?",
+        "question": "How do you optimize SQL queries in PostgreSQL for better performance?",
         "answer": "",
         "score": 0,
-        "feedback": "The answer is completely missing. No information is provided about Docker usage or management of containers.",
+        "feedback": "No answer provided.",
         "missing_points": [
-          "Description of creating a Dockerfile",
-          "Commands for managing Docker containers",
-          "Use of docker-compose"
+          "Use of EXPLAIN ANALYZE to understand query performance",
+          "Indexing strategies to speed up queries",
+          "Avoiding unnecessary columns in SELECT statements",
+          "Use of JOINs and subqueries efficiently",
+          "Understanding of query execution plans",
+          "Regular database maintenance tasks like vacuuming and analyzing"
         ]
       },
       {
-        "question": "What strategies do you use for unit testing in Python? Can you describe a testing framework you prefer?",
-        "answer": "",
+        "question": "Describe your experience with Docker and how you use it in your development workflow.",
+        "answer": "fddf",
         "score": 0,
-        "feedback": "The answer is completely missing. No information is provided about unit testing strategies or frameworks.",
+        "feedback": "The answer provided is not relevant to the question. It does not demonstrate any understanding of Docker or its use in development workflows.",
         "missing_points": [
-          "Mention of unittest or pytest",
-          "Description of writing test cases",
-          "Discussion on mocking dependencies"
+          "Understanding of Docker concepts like images, containers, and Dockerfiles",
+          "Experience in creating Dockerfiles for Python applications",
+          "Use of Docker Compose for multi-container applications",
+          "Benefits of containerization in development and deployment",
+          "Experience in managing Docker containers in production environments"
         ]
       },
       {
-        "question": "Can you explain how you would deploy a Python application using CI/CD? What tools would you use?",
+        "question": "What strategies do you use to ensure your code is well-tested and maintainable?",
         "answer": "",
         "score": 0,
-        "feedback": "The answer is completely missing. No information is provided about CI/CD practices or tools.",
+        "feedback": "No answer provided.",
         "missing_points": [
-          "Mention of CI/CD tools like Jenkins or GitHub Actions",
-          "Description of setting up deployment pipelines",
-          "Integration with Docker"
+          "Use of unit testing frameworks like pytest",
+          "Writing test cases for different scenarios and edge cases",
+          "Test-driven development (TDD) approach",
+          "Use of mocking and patching for testing external dependencies",
+          "Maintaining code quality with tools like flake8 or pylint",
+          "Continuous integration practices to automate testing"
         ]
       },
       {
-        "question": "What is your experience with AWS services? How would you use AWS to enhance a Python backend application?",
+        "question": "How would you deploy a Python application using AWS services?",
         "answer": "",
         "score": 0,
-        "feedback": "The answer is completely missing. No information is provided about AWS services or their application in a Python backend.",
+        "feedback": "No answer provided.",
         "missing_points": [
-          "Familiarity with AWS services like EC2, S3, RDS",
-          "Discussion on using RDS for PostgreSQL",
-          "Leveraging AWS services for application enhancement"
+          "Understanding of AWS services like EC2, Lambda, and ECS",
+          "Use of AWS Elastic Beanstalk for deploying applications",
+          "Experience with AWS RDS for database management",
+          "Security practices like IAM roles and policies",
+          "Use of AWS CLI or SDKs for automation",
+          "Monitoring and logging using CloudWatch"
+        ]
+      },
+      {
+        "question": "Can you explain how you would implement a CI/CD pipeline for a Python application?",
+        "answer": "",
+        "score": 0,
+        "feedback": "No answer provided.",
+        "missing_points": [
+          "Understanding of CI/CD concepts and benefits",
+          "Use of tools like Jenkins, GitHub Actions, or GitLab CI",
+          "Automating testing, building, and deployment processes",
+          "Handling environment configurations and secrets management",
+          "Rollback strategies in case of deployment failures",
+          "Monitoring and feedback loops for continuous improvement"
         ]
       }
     ],
@@ -189,35 +221,102 @@
   "learning_plan": {
     "candidate_id": "candidate_3",
     "summary": null,
-    "plan_by_week": {
-      "Week 1": "Study the differences between FastAPI and Flask. Create a simple API using both frameworks to understand their use cases.",
-      "Week 2": "Learn about SQL optimization techniques. Practice writing optimized SQL queries and using EXPLAIN to analyze query performance.",
-      "Week 3": "Get hands-on with Docker. Create a Dockerfile for a sample application and learn to manage containers and use docker-compose.",
-      "Week 4": "Explore testing frameworks like unittest and pytest. Write test cases and learn about mocking dependencies. Also, study CI/CD tools and set up a simple deployment pipeline using GitHub Actions."
-    },
+    "plan_by_week": [
+      {
+        "week": 1,
+        "goals": [
+          "Understand the basics of FastAPI and its features",
+          "Learn to create endpoints and handle requests",
+          "Explore Pydantic for data validation"
+        ],
+        "topics": [
+          "FastAPI introduction",
+          "Creating endpoints",
+          "Pydantic for data validation"
+        ],
+        "resources": [
+          "FastAPI Documentation: https://fastapi.tiangolo.com/",
+          "FastAPI Tutorial by DigitalOcean: https://www.digitalocean.com/community/tutorials/how-to-create-your-first-web-application-using-fastapi",
+          "Pydantic Documentation: https://pydantic-docs.helpmanual.io/"
+        ]
+      },
+      {
+        "week": 2,
+        "goals": [
+          "Learn asynchronous programming in FastAPI",
+          "Implement security measures like authentication and authorization",
+          "Generate documentation using FastAPI's built-in tools"
+        ],
+        "topics": [
+          "Asynchronous programming",
+          "Security in FastAPI",
+          "Documentation generation"
+        ],
+        "resources": [
+          "Asynchronous Programming in Python: https://realpython.com/async-io-python/",
+          "FastAPI Security: https://fastapi.tiangolo.com/tutorial/security/",
+          "FastAPI Automatic Docs: https://fastapi.tiangolo.com/features/#automatic-docs"
+        ]
+      },
+      {
+        "week": 3,
+        "goals": [
+          "Understand Docker concepts and create Dockerfiles",
+          "Use Docker Compose for multi-container applications",
+          "Learn benefits of containerization"
+        ],
+        "topics": [
+          "Docker basics",
+          "Dockerfiles",
+          "Docker Compose"
+        ],
+        "resources": [
+          "Docker Documentation: https://docs.docker.com/",
+          "Dockerfile Best Practices: https://docs.docker.com/develop/develop-images/dockerfile_best-practices/",
+          "Docker Compose Documentation: https://docs.docker.com/compose/"
+        ]
+      },
+      {
+        "week": 4,
+        "goals": [
+          "Explore AWS services like EC2, Lambda, and ECS",
+          "Learn CI/CD concepts and tools",
+          "Implement continuous integration practices"
+        ],
+        "topics": [
+          "AWS services",
+          "CI/CD tools",
+          "Continuous integration"
+        ],
+        "resources": [
+          "AWS Free Tier: https://aws.amazon.com/free/",
+          "AWS EC2 Documentation: https://docs.aws.amazon.com/ec2/",
+          "Jenkins Documentation: https://www.jenkins.io/doc/",
+          "GitHub Actions Documentation: https://docs.github.com/en/actions"
+        ]
+      }
+    ],
     "practice_projects": [
-      "Build a REST API using FastAPI and Flask, comparing their features and performance.",
-      "Optimize a set of SQL queries for a sample database and document the changes made.",
-      "Create a Dockerized application and manage it using Docker Compose.",
-      "Write unit tests for the REST API created in the first project and implement CI/CD using GitHub Actions."
+      "Build a REST API using FastAPI with authentication and documentation",
+      "Optimize a sample database query using EXPLAIN ANALYZE and indexing",
+      "Containerize a Python application using Docker and Docker Compose",
+      "Set up a CI/CD pipeline using GitHub Actions for automated testing and deployment"
     ],
     "resources": null,
     "focus_areas": [
-      "FastAPI vs Flask",
-      "SQL Optimization",
-      "Docker and Docker Compose",
-      "Testing with unittest and pytest",
-      "CI/CD with Jenkins and GitHub Actions",
-      "AWS Services (EC2, S3, RDS)"
+      "FastAPI framework",
+      "Database query optimization",
+      "Docker and containerization",
+      "Unit testing and TDD",
+      "AWS services and deployment",
+      "CI/CD practices"
     ],
     "recommended_resources": [
-      "FastAPI Documentation",
-      "Flask Documentation",
-      "SQL Performance Explained by Markus Winand",
-      "Docker Official Documentation",
-      "Testing Python Applications with unittest and pytest",
-      "Continuous Delivery by Jez Humble and David Farley",
-      "AWS Documentation for EC2, S3, and RDS"
+      "FastAPI Documentation: https://fastapi.tiangolo.com/",
+      "Docker Documentation: https://docs.docker.com/",
+      "AWS Free Tier: https://aws.amazon.com/free/",
+      "Jenkins Documentation: https://www.jenkins.io/doc/",
+      "GitHub Actions Documentation: https://docs.github.com/en/actions"
     ]
   }
 }

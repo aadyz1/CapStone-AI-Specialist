@@ -1,6 +1,9 @@
+import truststore 
+truststore.inject_into_ssl()
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import Chroma
 from langchain_chroma import Chroma
+
 
 from src.config import CHROMA_DIR, JD_COLLECTION, RESUME_COLLECTION, OPENAI_API_KEY
 

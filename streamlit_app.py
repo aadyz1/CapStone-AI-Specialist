@@ -1,6 +1,9 @@
+import truststore  
+truststore.inject_into_ssl()
 import os
 import json
 import streamlit as st
+
 
 from src.ingest import ingest_all
 from src.graph import build_recruitment_graph
@@ -10,6 +13,12 @@ APP_TITLE = "Recruitment Multi-Agent System (LangChain + LangGraph + RAG + Chrom
 DATA_DIR = "./data"
 JD_PATH = os.path.join(DATA_DIR, "jd.txt")
 RESUMES_DIR = os.path.join(DATA_DIR, "resumes")
+
+# =========================================================
+# directory where streamlit_app.py is located
+# =========================================================
+APP_ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+FINAL_OUTPUT_PATH = os.path.join(APP_ROOT_DIR, "final_output.json")
 
 
 def ensure_data_folders():
@@ -71,35 +80,47 @@ def render_evaluation(evaluation):
 
 def render_learning_plan(plan):
     st.subheader("Learning Plan (Agent 4)")
-    st.write("**Focus Areas:**", ", ".join(plan.focus_areas))
+
+    if hasattr(plan, "focus_areas") and plan.focus_areas:
+        st.write("**Focus Areas:**", ", ".join(plan.focus_areas))
     st.divider()
 
     st.write("### Weekly Plan")
-    for weekly_plan in plan.plan_by_week:
-        st.markdown(f"**Week {weekly_plan.week}**")
 
+    for index, weekly_plan in enumerate(plan.plan_by_week, start=1):
+        if isinstance(weekly_plan, dict):
+            week_number = weekly_plan.get("week", index)
+            goals = weekly_plan.get("goals", [])
+        else:
+            week_number = getattr(weekly_plan, "week", index)
+            goals = getattr(weekly_plan, "goals", [])
+
+        st.markdown(f"**Week {week_number}**")
         st.markdown("**Goals:**")
-    for goal in weekly_plan.goals:
-        st.write(f"- {goal}")
-
-    st.write("")
-
-    st.write("")
+        for goal in goals:
+            st.write(f"- {goal}")
+        st.divider()
 
     st.write("### Practice Projects")
-    st.write("\n".join([f"- {p}" for p in plan.practice_projects]))
+    for p in getattr(plan, "practice_projects", []):
+        st.write(f"- {p}")
 
     st.write("### Recommended Resources")
-    st.write("\n".join([f"- {r}" for r in plan.recommended_resources]))
+    for r in getattr(plan, "recommended_resources", []):
+        st.write(f"- {r}")
+
     
 def main():
     st.set_page_config(page_title=APP_TITLE, layout="wide")
     st.title(APP_TITLE)
-    st.caption("Upload a JD + resumes, screen candidates, generate interview questions, evaluate answers, and create a learning plan — without typing Q&A in the terminal.")
+    st.caption(
+        "Upload resumes, automatically ingest with backend JD, "
+        "screen candidates, generate interview questions, evaluate answers, "
+        "and create a learning plan."
+    )
 
     ensure_data_folders()
 
-    # Session state
     st.session_state.setdefault("screening", None)
     st.session_state.setdefault("questions", None)
     st.session_state.setdefault("selected_candidate_id", None)
@@ -107,56 +128,33 @@ def main():
     st.session_state.setdefault("evaluation", None)
     st.session_state.setdefault("learning_plan", None)
     st.session_state.setdefault("final_json", None)
-    st.session_state.setdefault("jd_saved_path", JD_PATH)
 
     left, right = st.columns([1, 1])
 
     with left:
-        st.header("1) Upload Documents")
+        st.header("1) Upload Resumes")
 
-        jd_file = st.file_uploader("Upload Job Description (txt/docx/doc/pdf)", type=["txt","docx","doc","pdf"])
         resume_files = st.file_uploader(
             "Upload Resumes (txt/docx/doc/pdf) — multiple files allowed",
             type=["txt","docx","doc","pdf"],
             accept_multiple_files=True
         )
 
-        col_a, col_b = st.columns([1, 1])
+        if resume_files:
+            clear_resumes_folder()
+            for rf in resume_files:
+                safe_name = rf.name.replace(" ", "_")
+                save_uploaded_file(rf, os.path.join(RESUMES_DIR, safe_name))
 
-        with col_a:
-            if st.button("Save uploads to data/", type="primary", use_container_width=True):
-                if jd_file is None:
-                    st.error("Please upload a JD .txt file.")
-                elif not resume_files:
-                    st.error("Please upload at least one resume .txt file.")
-                else:
-                    jd_ext = os.path.splitext(jd_file.name)[1].lower() or '.txt'
-                    jd_save_path = os.path.join(DATA_DIR, 'jd' + jd_ext)
-                    save_uploaded_file(jd_file, jd_save_path)
-                    st.session_state.jd_saved_path = jd_save_path
-                    clear_resumes_folder()
-                    for rf in resume_files:
-                        safe_name = rf.name.replace(" ", "_")
-                        save_uploaded_file(rf, os.path.join(RESUMES_DIR, safe_name))
-                    st.success("Saved JD and resumes to data/ folder.")
-
-        with col_b:
-            st.info("Tip: You can also use the sample data already included in data/.")
-
-        st.divider()
-
-        st.header("2) Ingest into Chroma (Vector DB)")
-        st.write("This creates embeddings and stores them in Chroma for RAG retrieval.")
-        if st.button("Ingest", type="primary", use_container_width=True):
             try:
-                ingest_all(st.session_state.get('jd_saved_path', JD_PATH), RESUMES_DIR)
-                st.success("Ingestion complete.")
+                ingest_all(JD_PATH, RESUMES_DIR)
+                st.success("Resumes uploaded and JD + resumes ingested automatically.")
             except Exception as e:
                 st.exception(e)
 
         st.divider()
 
-        st.header("3) Run Screening + Generate Questions")
+        st.header("2) Run Screening + Generate Questions")
         jd_query = st.text_input(
             "Query used for retrieval + reasoning",
             value="Find best candidate fit for this job and identify gaps."
@@ -166,11 +164,10 @@ def main():
             try:
                 candidate_ids = list_candidate_ids()
                 if not candidate_ids:
-                    st.error("No resumes found in data/resumes.")
+                    st.error("No resumes found.")
                 else:
                     app = build_recruitment_graph()
 
-                    # Provide empty answers initially (we'll fill them in UI later)
                     state = {
                         "jd_query": jd_query,
                         "candidate_ids": candidate_ids,
@@ -229,24 +226,29 @@ def main():
             st.warning("No questions generated yet.")
             return
 
-        # Answer inputs
-        answers = {}
-        for i, q in enumerate(questions_obj.questions, 1):
-          ##  st.markdown(f"**Q{i}. {q.question}** 
-            st.markdown(f"""
+        # =====================================================
+        # ✅ FIX: Use st.form to prevent rerun on every keystroke
+        # =====================================================
+        with st.form("interview_form"):
+            answers = {}
+            for i, q in enumerate(questions_obj.questions, 1):
+                st.markdown(f"""
 **Q{i}. {q.question}**
 *Skill:* {q.skill_tested}
 """)
-##*Skill:* {q.skill_tested}")
-            answers[q.question] = st.text_area(
-                label=f"Answer {i}",
-                value=st.session_state.answers.get(q.question, ""),
-                height=120
-            )
-            with st.expander("Expected Answer Outline"):
-                st.write("\n".join([f"- {p}" for p in q.expected_answer_outline]))
+                answers[q.question] = st.text_area(
+                    label=f"Answer {i}",
+                    value=st.session_state.answers.get(q.question, ""),
+                    height=120
+                )
+                with st.expander("Expected Answer Outline"):
+                    st.write("\n".join([f"- {p}" for p in q.expected_answer_outline]))
 
-        st.session_state.answers = answers
+            submitted = st.form_submit_button("Save Answers")
+
+            if submitted:
+                st.session_state.answers = answers
+                st.success("Answers saved. Click 'Evaluate + Learning Plan'.")
 
         col1, col2 = st.columns([1, 1])
 
@@ -277,6 +279,9 @@ def main():
                         "evaluation": st.session_state.evaluation.model_dump(),
                         "learning_plan": st.session_state.learning_plan.model_dump(),
                     }
+
+                    with open(FINAL_OUTPUT_PATH, "w", encoding="utf-8") as f:
+                        json.dump(st.session_state.final_json, f, indent=2)
 
                     st.success("Evaluation + learning plan ready below.")
                 except Exception as e:

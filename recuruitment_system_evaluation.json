@@ -1,0 +1,76 @@
+{
+  "candidate_answer_evaluation": {
+    "score": 1.7,
+    "what_was_evaluated": "Relevancy, Faithfulness (No Hallucinations), and Context Precision.",
+    "detailed_metrics": {
+      "answer_relevancy": 0.0,
+      "faithfulness": 0.0,
+      "context_precision": 1.0
+    },
+    "strengths": [
+      "Uses Faithfulness to ensure AI isn't making up facts",
+      "Uses Context Precision to ensure search results are accurate"
+    ],
+    "weaknesses": [
+      "If faithfulness is low, the model is ignoring the provided data",
+      "Several candidate answers were empty or incomplete"
+    ],
+    "justification": "The candidate scored 1.7/5. This is based on how well they answered the prompt, how factual they were relative to the documents, and how precise the retrieved information was."
+  },
+  "screening_agent_evaluation": {
+    "score": 4,
+    "fairness": "high",
+    "consistency": "high",
+    "strengths": [
+      "Candidate 3 has the highest match score and meets all must-have and nice-to-have skills.",
+      "Candidate 1 meets all must-have requirements and has relevant experience, though lacks some nice-to-have skills.",
+      "Candidate 2 has basic Docker knowledge, but lacks critical skills for the role."
+    ],
+    "improvement_areas": [
+      "Candidate 1 needs to gain experience with FastAPI, Kubernetes, Redis, and CI/CD.",
+      "Candidate 2 needs to significantly improve their skills in Python, REST APIs, SQL, unit testing, and other technologies relevant to the role."
+    ],
+    "justification": "The evaluation reflects the candidates' match scores and their strengths and gaps in relation to the job requirements. Candidate 3 is the strongest, while Candidate 2 is the weakest, demonstrating a clear differentiation in their suitability for the position."
+  },
+  "question_generation_agent_evaluation": {
+    "score": 4,
+    "coverage": "good",
+    "difficulty_balance": "fair",
+    "missing_topics": [],
+    "justification": "The questions cover a range of relevant technical skills including REST APIs, SQL optimization, Docker, unit testing, container deployment, and AWS services. The expected answers provide a comprehensive outline for each topic, ensuring a good depth of knowledge is assessed. However, there could be a broader range of topics included to enhance coverage further."
+  },
+  "evaluation_agent_evaluation": {
+    "score": 1,
+    "feedback_quality": "low",
+    "actionability": "low",
+    "strengths": [],
+    "weaknesses": [
+      "No relevant answers provided for any questions.",
+      "Lack of understanding of key technologies and concepts.",
+      "Failure to demonstrate any practical knowledge or experience."
+    ],
+    "justification": "The candidate did not provide relevant answers to any of the questions, indicating a lack of understanding and experience with the required technologies. The absence of responses also limits the ability to assess their knowledge and skills effectively."
+  },
+  "learning_plan_agent_evaluation": {
+    "score": 4,
+    "alignment_with_gaps": "high",
+    "progression_quality": "good",
+    "practical_value": "high",
+    "justification": "The learning plan is well-structured, covering essential topics in FastAPI, Docker, and AWS, which align with current industry demands. The progression from basic concepts to more advanced topics is logical, and the inclusion of practical projects enhances the applicability of the knowledge gained. The resources provided are relevant and comprehensive, supporting effective learning."
+  },
+  "overall_system_evaluation": {
+    "overall_score": 2.4,
+    "summary_for_non_technical_readers": "The evaluations of the candidates and their responses show a mixed performance. While some candidates demonstrated strong skills and knowledge, others fell short, particularly in providing relevant answers. The learning plan for skill development is well-structured and aligns with industry needs, but there are significant gaps in understanding and experience for some candidates.",
+    "system_strengths": [
+      "Strong learning plan that aligns with industry needs.",
+      "High consistency and fairness in candidate evaluations.",
+      "Good coverage of relevant technical skills in question generation."
+    ],
+    "system_weaknesses": [
+      "Low relevancy and faithfulness in candidate answers.",
+      "Some candidates provided incomplete or irrelevant responses.",
+      "Lack of practical knowledge demonstrated by certain candidates."
+    ],
+    "final_verdict": "Partially Ready"
+  }
+}

@@ -1,3 +1,5 @@
+import truststore 
+truststore.inject_into_ssl()
 import os
 from dotenv import load_dotenv
 
@@ -6,7 +8,7 @@ load_dotenv()
 
 # OpenAI configuration
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
-OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o")
 
 # Where Chroma persists vectors to disk
 CHROMA_DIR = os.getenv("CHROMA_DIR", "./chroma_db")

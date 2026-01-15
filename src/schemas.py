@@ -1,3 +1,5 @@
+import truststore 
+truststore.inject_into_ssl()
 from pydantic import BaseModel, Field
 from typing import List, Dict, Optional, Any
 

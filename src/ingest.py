@@ -1,3 +1,5 @@
+import truststore 
+truststore.inject_into_ssl()
 import os
 import tempfile
 import subprocess
@@ -9,6 +11,7 @@ from langchain_community.vectorstores import Chroma
 from langchain_chroma import Chroma
 from langchain_core.documents import Document as LCDocument
 from docx import Document as DocxDocument
+
 
 from src.config import CHROMA_DIR, JD_COLLECTION, RESUME_COLLECTION, OPENAI_API_KEY
 
