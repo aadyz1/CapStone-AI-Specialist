@@ -1,3 +1,5 @@
+import truststore 
+truststore.inject_into_ssl()
 from typing import List, Dict
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
@@ -6,11 +8,12 @@ from src.config import OPENAI_API_KEY, OPENAI_MODEL
 from src.schemas import ScreeningOutput, QuestionsOutput, AnswerEvaluationOutput, LearningPlan
 from src.rag import retrieve_jd_context, retrieve_resume_context
 
+
 # Single LLM client shared by all agents
 llm = ChatOpenAI(
     api_key=OPENAI_API_KEY,
     model=OPENAI_MODEL,
-    temperature=0.2,
+    temperature=0,
 )
 
 # -----------------------------
@@ -27,6 +30,7 @@ def resume_screening_agent(jd_query: str, candidate_ids: List[str]) -> Screening
     - We only fetch the most relevant chunks of the JD and resume.
     - This keeps prompts small and grounded in actual text.
     """
+    ## Fetch 6 most relevant parts of the job description
     jd_context = retrieve_jd_context(jd_query, k=6)
 
     prompt = ChatPromptTemplate.from_messages([
@@ -46,7 +50,9 @@ def resume_screening_agent(jd_query: str, candidate_ids: List[str]) -> Screening
 
     all_matches = []
     for cid in candidate_ids:
+        ##Fetch resume chunks relevant to job
         resume_context = retrieve_resume_context(cid, jd_query, k=6)
+        ##Send JD + resume to llm
         out = structured_llm.invoke(
             prompt.format_messages(
                 jd_context=jd_context,
@@ -54,10 +60,12 @@ def resume_screening_agent(jd_query: str, candidate_ids: List[str]) -> Screening
                 candidate_id=cid,
             )
         )
+        ## Add results to list.
         all_matches.extend(out.ranked_candidates)
 
-    # Rank candidates by score
+    ##Rank candidates by score (best first)
     all_matches_sorted = sorted(all_matches, key=lambda x: x.match_score, reverse=True)
+    ##Return final screening result
     return ScreeningOutput(ranked_candidates=all_matches_sorted)
 
 
